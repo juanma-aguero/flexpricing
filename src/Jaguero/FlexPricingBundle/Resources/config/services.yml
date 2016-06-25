@@ -1,0 +1,7 @@
+services:
+
+    jaguero.flexprincing.listplugins_eventsubscriber:
+        class: Jaguero\FlexPricingBundle\Event\ListPluginsSubscriber
+        arguments: ['@router', '@translator']
+        tags:
+            - { name: kernel.event_subscriber }

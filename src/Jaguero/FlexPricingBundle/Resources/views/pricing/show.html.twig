@@ -1,0 +1,135 @@
+{% extends "FlowcodeDashboardBundle:Default:layout.html.twig" %}
+
+{% block title %}Pricing - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <h1>
+            <a href="{{ path('admin_pricing') }}"> {{ 'Pricing list'|trans({'Pricing': 'Pricing'}, 'Pricing') }}</a>
+            /
+            {{ 'Pricing' | trans({}, 'Pricing')}}
+        </h1>
+    </section>
+    <section class="content">    
+        <div class="box"  id='showPricing'>
+            <div class="box-header">
+                <div class="box-tools  pull-right">
+                            {{ form_start(delete_form) }}
+        {{ form_widget(delete_form) }}
+
+        <div class="btn-group record_actions">            <button class="btn btn-link btn-sm" type="submit"> {{ 'Delete'|trans({}, 'Pricing') }}</button>
+            <input name="modal" type="hidden" value="0">
+            
+                <a class="btn btn-link  btn-sm" onclick="showEdit(true)">
+                    {{ 'Edit'|trans({}, 'Pricing') }}
+                </a>
+</div>
+            <input name="modal" type="hidden" value="0">
+        {{ form_end(delete_form) }}
+
+</div>
+            </div>
+            <div class="box-body">
+                <table class="table table-hover record_properties">
+                    <tbody>                            
+                        <tr>
+                            <th scope="row">{{'Title'|trans({}, 'Pricing')}}</th>
+                            <td>{{ pricing.title }}</td>
+                        </tr>                            
+                        <tr>
+                            <th scope="row">{{'Subtitle'|trans({}, 'Pricing')}}</th>
+                            <td>{{ pricing.subtitle }}</td>
+                        </tr>                            
+                        <tr>
+                            <th scope="row">{{'Price'|trans({}, 'Pricing')}}</th>
+                            <td>{{ pricing.price }}</td>
+                        </tr>                            
+                        <tr>
+                            <th scope="row">{{'Important'|trans({}, 'Pricing')}}</th>
+                            <td>{% if pricing.important %}<i class="fa fa-check-square-o"></i>{% else %}<i class="fa fa-square-o"></i>{% endif %}</td>
+                        </tr>                            
+                        <tr>
+                            <th scope="row">{{'Content'|trans({}, 'Pricing')}}</th>
+                            <td>{{ pricing.content }}</td>
+                        </tr>                            
+                        <tr>
+                            <th scope="row">{{'Action'|trans({}, 'Pricing')}}</th>
+                            <td>{{ pricing.action }}</td>
+                        </tr>                            
+                        <tr>
+                            <th scope="row">{{'Enabled'|trans({}, 'Pricing')}}</th>
+                            <td>{% if pricing.enabled %}<i class="fa fa-check-square-o"></i>{% else %}<i class="fa fa-square-o"></i>{% endif %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+            
+            </div>
+        </div>
+        <div class="box" id='editFormPricing'  style="display: none;">
+            <div class="box-header">
+                <div class="box-tools">
+                    {{ form_start(delete_form) }}
+                    {{ form_widget(delete_form) }}
+                    <div class="btn-group record_actions">
+                        <button class="btn btn-link btn-sm" type="submit"> {{ 'Delete'|trans({}, 'Pricing') }}</button>
+                        <a class="btn btn-link  btn-sm" onclick="showEdit(false)">
+                        {{ 'Cancel'|trans({}, 'Account') }}
+                        </a>
+                    </div>
+                    <input name="modal" type="hidden" value="0">
+                    {{ form_end(delete_form) }}
+                </div>
+            </div>
+            <div class="box-body">
+
+            {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <p>
+                    <button class="btn-default btn" type="submit">{{ 'save'|trans | capitalize}}</button>
+                </p>
+            {{ form_end(edit_form) }}
+            </div>
+            <div class="box-footer">
+            </div>
+        </div>
+    </section>
+
+        <div class="btn-group record_actions"></div>
+
+        <div id="delete_confirm" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h3>{{ 'Confirm delete'|trans({}, 'Pricing') }}</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ 'You are about to delete an item'|trans({}, 'Pricing') }}, {{ 'this procedure is irreversible'|trans({}, 'Pricing') }}.</p>
+                        <p>{{ 'Do you want to proceed?'|trans({}, 'Pricing') }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger">{{ 'Yes'|trans({}, 'Pricing') }}</button>
+                        <button class="btn btn-default" data-dismiss="modal">{{ 'No'|trans({}, 'Pricing') }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        function showEdit(show){
+            if(show){
+                $('#showPricing').hide();
+                $('#editFormPricing').show();
+            }else{
+                $('#showPricing').show();
+                $('#editFormPricing').hide();
+            }
+        }
+        
+    </script>
+{% endblock %}

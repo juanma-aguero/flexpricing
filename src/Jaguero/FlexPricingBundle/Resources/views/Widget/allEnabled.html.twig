@@ -1,0 +1,17 @@
+<div class="row">
+    {% for pricing in pricing_list %}
+        <div class="col-sm-4">
+            <div class="pricing {% if pricing.important %}in-evidence{% endif %}">
+            <span class="header">
+                <span class="title">{{ pricing.title }}</span>
+                <span class="sub-title">{{ pricing.subtitle }}</span>
+            </span>
+                <div class="price special">{{ pricing.price }}</div>
+                {{ pricing.content|raw }}
+                <button type="button" class="btn btn-block btn-special">
+                    {{ pricing.action }}
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
