@@ -16,7 +16,7 @@ use Doctrine\ORM\QueryBuilder;
  *
  * @Route("/admin/pricing")
  */
-class PricingController extends Controller
+class AdminPricingController extends Controller
 {
     /**
      * Lists all Pricing entities.
